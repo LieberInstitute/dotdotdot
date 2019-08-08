@@ -15,7 +15,10 @@ Z = out{2}.SizeZ;
 voxelSizeX = out{2}.ScaleX;
 voxelSizeY = out{2}.ScaleY;
 voxelSizeZ = out{2}.ScaleZ;
-image6d = out{1}; %dims = series,time, z, c, x, y 
+image6d = out{1}; 
+
+out{1,2}.Dyes = {'Cy5','DsRed','EGFP','DAPI'}; %dye names are wiped out when cropped and the channel names have no information
+
 
 d = find(cellfun(@(x) contains(x,"DAPI"), out{2}.Dyes), 1);
 O = out{2}.Dyes;
@@ -94,7 +97,7 @@ for channe_i = 1:numel(c)
     channel_i = c(channe_i);
     eval(['channel = img.',char(O(channel_i)),';']);
 	channel = rescale(channel);
-    channel = imhmin(channel,mean2(channel)+4*std2(channel));% suppress background noise in RNA scope channels.  
+    channel = imhmin(channel,std2(channel));% suppress background noise in RNA scope channels.  
   
   thresh = graythresh(channel);
   BWc = imbinarize(channel,thresh);
@@ -122,6 +125,7 @@ eval([v '= statsc;'])
 
 if exist('cel','var')
 tic
+ warning('off','all');
 dots_of_ROI = cell2table({{0},{0},0,{0},{0},{0}},'VariableNames',{'ROI','dotname','count','Volume','Location','Intensity'});
 for i = 1:numel(cel) % for loop to find dots in ROI
 dots=cellfun(@(x) intersect(x,cel{i}.ind), Dotc,'UniformOutput', false);
@@ -136,6 +140,8 @@ XX = [num2str(i),' cells finished in time ', num2str(toc),'s'];
 disp(XX)
 clear XX x
 end
+
+warning('on','all');
 
 v = ['excel_dots_of_ROI.',char(O(channel_i))];
 eval([v '= dots_of_ROI;'])
