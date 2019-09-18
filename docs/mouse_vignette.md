@@ -1,3 +1,3 @@
 # Mouse RNAscope Workflow
-Inline-style: 
-![alt text](images/MAX_Human1-520.tif "Logo Title Text 1")
+
+![alt text](https://github.com/LieberInstitute/dotdotdot/blob/master/images/MAX_Human1-520.tif "Logo Title Text 1")
