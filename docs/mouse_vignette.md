@@ -1,4 +1,3 @@
 # Mouse RNAscope Workflow
-
-![GitHub Logo](/images/logo.png)
-Format: ![Alt Text](url)
+Inline-style: 
+![alt text](images/MAX_Human1-520.tif "Logo Title Text 1")
