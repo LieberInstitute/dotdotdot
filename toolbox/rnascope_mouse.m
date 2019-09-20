@@ -154,8 +154,8 @@ end
 	 toc
 save([filename(1:end-4),'_img.mat'],'img')
 save([filename(1:end-4),'_segmentation.mat'],'Segmentations')
-save([filename(1:end-4),'_excel_totaldots.mat'],'excel_totaldots') 
-save([filename(1:end-4),'_excel_dots_of_ROI.mat'],'excel_dots_of_ROI') 
+save([filename(1:end-4),'_totaldots.mat'],'excel_totaldots') 
+save([filename(1:end-4),'_dots_of_ROI.mat'],'excel_dots_of_ROI') 
 
 %clearex myfiles fn toolbox
 
