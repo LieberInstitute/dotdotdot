@@ -4,11 +4,11 @@ The input [czi](https://github.com/LieberInstitute/dotdotdot/blob/master/images/
 
 <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/MAX_Human2-DAPI.png" title="DAPI" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/MAX_Human2-520.png" title="Opal 520" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/MAX_Human2-570.png" title="Opal 520" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/MAX_Human2-620.png" title="Opal 520" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/MAX_Human2-690.png" title="Opal 520" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/MAX_Human2-Lip.png" title="Opal 520" width="225"/> <br/>
 
-The corresponding segmentions
+The corresponding segmentions from Dotdotdot
 
 <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/output/Human2_segmentation_DAPILp3.jpg" title="DAPI" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/output/Human2_segmentation_Opal520_Lp20.jpg" title="Opal 520" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/output/Human2_segmentation_Opal570Lp1_0.jpg" title="Opal 520" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/output/Human2_segmentation_Opal620_Lp20.jpg" title="Opal 520" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/output/Human2_segmentation_Opal690Lp30.jpg" title="Opal 520" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/output/Human2_segmentation_No103_Lipofuscin_63x.jpg" title="Opal 520" width="225"/> <br/>
 
-Download the [toolbox](https://github.com/LieberInstitute/dotdotdot/tree/master/toolbox) directory and assign the paths to input `czi` file and toolbox to Matlab variables as shown below. The toolbox should be added to the Matlab’s current working directory to run the code.
+Download the [toolbox](https://github.com/LieberInstitute/dotdotdot/tree/master/toolbox) directory and assign the paths of input `czi` file and toolbox to Matlab variables as shown below. The toolbox should be added to the Matlab’s current working directory to run the code.
 
 ``` matlab
 >> filename = '/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdot_vignette/dotdot_vignette/Human2.czi';
