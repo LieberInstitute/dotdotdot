@@ -216,11 +216,11 @@ ans =
        ROI           dotname       count       Volume         Location       Intensity 
     __________    _____________    _____    _____________    ___________    ___________
 
-    {'ROI1'}    [         18]     1       [         68]    { 1×1 cell}    { 1×1 cell}
-    {'ROI2'}    [ 8×1 double]     8       [ 8×1 double]    { 8×1 cell}    { 8×1 cell}
-    {'ROI3'}    [ 2×1 double]     2       [ 2×1 double]    { 2×1 cell}    { 2×1 cell}
-    {'ROI4'}    [13×1 double]    13       [13×1 double]    {13×1 cell}    {13×1 cell}
-    {'ROI5'}    [12×1 double]    12       [12×1 double]    {12×1 cell}    {12×1 cell}
+    'ROI1'    [         18]     1       [         68]    { 1×1 cell}    { 1×1 cell}
+    'ROI2'    [ 8×1 double]     8       [ 8×1 double]    { 8×1 cell}    { 8×1 cell}
+    'ROI3'    [ 2×1 double]     2       [ 2×1 double]    { 2×1 cell}    { 2×1 cell}
+    'ROI4'    [13×1 double]    13       [13×1 double]    {13×1 cell}    {13×1 cell}
+    'ROI5'    [12×1 double]    12       [12×1 double]    {12×1 cell}    {12×1 cell}
 
 ```
 
