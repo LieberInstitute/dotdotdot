@@ -135,8 +135,8 @@ end
 					dots_m=cellfun(@(x) intersect(x,cel{i}), statsc_m.VoxelIdxList,'UniformOutput', false);
 		 			x = find(~cellfun(@isempty,dots));
 					x_m = find(~cellfun(@isempty,dots_m));
-		 			dots_of_ROI.ROI{i} = {sprintf('ROI%d',i)};
-					dots_of_ROI_m.ROI{i} = {sprintf('ROI%d',i)};
+		 			dots_of_ROI.ROI{i} = sprintf('ROI%d',i);
+					dots_of_ROI_m.ROI{i} = sprintf('ROI%d',i);
 		 			dots_of_ROI.dotname{i} = x;
 					dots_of_ROI_m.dotname{i} = x_m;
 		 			dots_of_ROI.count(i) = numel(x);
