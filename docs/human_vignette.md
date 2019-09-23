@@ -100,7 +100,7 @@ img =
 This matfile has two matlab structures `Segmentations`(before masking) and `Segmentation_m`(after masking) 
 
 ```matlab
->> load('~/Human2_Segmentations.mat')
+>> load('~/Human2_segmentation.mat')
 >> Segmentations
 
 Segmentations = 
