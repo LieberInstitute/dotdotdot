@@ -156,3 +156,112 @@ CHANNEL img.EGFP:  284 dots detected
 completed EGFP
 Elapsed time is 0.334633 seconds.
 ```
+The above function outputs the following four `.mat` files that are saved where the input `.czi` file is located.
+These matfiles are matlab structures with each field being a channel from the `.czi` file.
+
+[raw data ~/Mouse2_img.mat](https://github.com/LieberInstitute/dotdotdot/blob/master/output/Mouse2_img.mat)
+
+```matlab
+>> load('~/Mouse2_img.mat')
+>> img
+
+img = 
+
+  struct with fields:
+
+      Cy5: [201×201×18 double]
+    DsRed: [201×201×18 double]
+     EGFP: [201×201×18 double]
+     DAPI: [201×201×18 double]
+```
+
+[segmented images ~/Mouse2_segmentation.mat](https://github.com/LieberInstitute/dotdotdot/blob/master/output/Mouse2_segmentation.mat)
+
+```matlab
+>> load('~/Mouse2_segmentation.mat')
+>> Segmentations
+
+Segmentations = 
+
+  struct with fields:
+
+     DAPI: [201×201×18 double]
+      Cy5: [201×201×18 logical]
+    DsRed: [201×201×18 logical]
+     EGFP: [201×201×18 logical]
+        
+    imshow(max(Segmentations.DAPI,[],3)) %displays the following image
+```    
+<img src="https://github.com/LieberInstitute/dotdotdot/blob/master/output/Mouse2_segmentation_DAPI.jpg" title="DAPI" width="225"/> 
+    
+
+
+[total segmented dots in each channel ~/Mouse2_totaldots.mat](https://github.com/LieberInstitute/dotdotdot/blob/master/output/Mouse2_totaldots.mat)
+
+```matlab
+>> load('~/Mouse2_totaldots.mat')
+>> excel_totaldots
+
+>> excel_totaldots
+
+excel_totaldots = 
+
+  struct with fields:
+
+     DAPI: [14×9 table]
+      Cy5: [426×8 table]
+    DsRed: [781×8 table]
+     EGFP: [284×8 table]
+    
+>> head(excel_totaldots.DAPI) %display 1st few rows of this object
+
+ans =
+
+  8×9 table
+
+    Volume             Centroid             BoundingBox       VoxelIdxList         VoxelList          VoxelValues       MeanIntensity    MinIntensity    MaxIntensity
+    ______    __________________________    ____________    ________________    ________________    ________________    _____________    ____________    ____________
+
+     8565     62.444     143.6     9.809    [1x6 double]    [ 8565×1 double]    [ 8565×3 double]    [ 8565×1 double]     10628           466             44982       
+    11057     162.73    156.14    8.6432    [1x6 double]    [11057×1 double]    [11057×3 double]    [11057×1 double]    9519.9           215             45876       
+     2408     5.2022    154.21     8.961    [1x6 double]    [ 2408×1 double]    [ 2408×3 double]    [ 2408×1 double]    7397.1           573             27740       
+    12556     108.64    139.28     9.579    [1x6 double]    [12556×1 double]    [12556×3 double]    [12556×1 double]    8743.5           734             50481       
+    11766      46.25    106.34    10.424    [1x6 double]    [11766×1 double]    [11766×3 double]    [11766×1 double]     18578           993             65535       
+     2829     51.367    196.84    10.746    [1x6 double]    [ 2829×1 double]    [ 2829×3 double]    [ 2829×1 double]    9791.3           718             34668       
+    10231     90.073    70.494    9.7296    [1x6 double]    [10231×1 double]    [10231×3 double]    [10231×1 double]     11861           929             57322       
+    11066     42.672    26.197    11.052    [1x6 double]    [11066×1 double]    [11066×3 double]    [11066×1 double]     12175           165             64592       
+
+```
+
+[Dots in nuclei per channel ~/Mouse2_dots_of_ROI.mat](https://github.com/LieberInstitute/dotdotdot/blob/master/output/Mouse2_dots_of_ROI.mat)
+
+```matlab
+>> load('~/Mouse2_dots_of_ROI.mat')
+>> excel_dots_of_ROI
+
+excel_dots_of_ROI = 
+
+  struct with fields:
+
+      Cy5: [14×6 table]
+    DsRed: [14×6 table]
+     EGFP: [14×6 table]
+     
+>> head(excel_dots_of_ROI.Cy5) %display 1st few rows of this object
+ans =
+
+  8×6 table
+
+     ROI         dotname       count       Volume         Location       Intensity 
+    ______    _____________    _____    _____________    ___________    ___________
+
+    'ROI1'    [ 6×1 double]     6       [ 6×1 double]    { 6×1 cell}    { 6×1 cell}
+    'ROI2'    [35×1 double]    35       [35×1 double]    {35×1 cell}    {35×1 cell}
+    'ROI3'    [ 7×1 double]     7       [ 7×1 double]    { 7×1 cell}    { 7×1 cell}
+    'ROI4'    [59×1 double]    59       [59×1 double]    {59×1 cell}    {59×1 cell}
+    'ROI5'    [16×1 double]    16       [16×1 double]    {16×1 cell}    {16×1 cell}
+    'ROI6'    [ 7×1 double]     7       [ 7×1 double]    { 7×1 cell}    { 7×1 cell}
+    'ROI7'    [37×1 double]    37       [37×1 double]    {37×1 cell}    {37×1 cell}
+    'ROI8'    [ 4×1 double]     4       [ 4×1 double]    { 4×1 cell}    { 4×1 cell}
+
+```
