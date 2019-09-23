@@ -2,7 +2,7 @@
 
 The input [czi](https://github.com/LieberInstitute/dotdotdot/blob/master/images/Mouse1.czi) file has the following channels
 
-<img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/MAX_Mouse2-DAPI.png" title="DAPI" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/MAX_Mouse2-520.jpg" title="Opal 520" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/MAX_Mouse2-570.png" title="Opal 520" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/MAX_Mouse2-620.png" title="Opal 520" width="225"/> <br/>
+<img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/MAX_Mouse2-DAPI.jpg" title="DAPI" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/MAX_Mouse2-520.jpg" title="Opal 520" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/MAX_Mouse2-570.jpg" title="Opal 520" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/MAX_Mouse2-620.jpg" title="Opal 520" width="225"/> <br/>
 
 The corresponding segmentions from Dotdotdot
 
