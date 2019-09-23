@@ -18,7 +18,7 @@ Download the [toolbox](https://github.com/LieberInstitute/dotdotdot/tree/master/
 
 The command [rnascope_mouse](https://github.com/LieberInstitute/dotdotdot/blob/master/toolbox/rnascope_mouse.m) takes in the filename and toolbox as inputs. This command uses [segmct](https://github.com/LieberInstitute/dotdotdot/blob/master/toolbox/cellsegm-master/%40cellsegm/segmct.m) function from the toolbox [CellSegm](https://www.ncbi.nlm.nih.gov/pubmed/23938087) for nuclei segmentatation. 
 
-The [CellSegm](https://www.ncbi.nlm.nih.gov/pubmed/23938087) toolbox provides the user with several input options for smoothing (coherence enhancing diffusion, edge enhancing diffusion, gaussian) and thresholding (iterative thresholding, adaptive thresholding, gradient thresholding, ridge enhancement). The inputs for [segmct](https://github.com/LieberInstitute/dotdotdot/blob/master/toolbox/cellsegm-master/%40cellsegm/segmct.m) function are the raw DAPI channe, estimated nucleus size (minimum and maximum in cubic micron) and a matlab structured array called `prm` which takes in the above mentioned options. 
+The [CellSegm](https://www.ncbi.nlm.nih.gov/pubmed/23938087) toolbox provides the user with several input options for smoothing (coherence enhancing diffusion, edge enhancing diffusion, gaussian) and thresholding (iterative thresholding, adaptive thresholding, gradient thresholding, ridge enhancement). The inputs for [segmct](https://github.com/LieberInstitute/dotdotdot/blob/master/toolbox/cellsegm-master/%40cellsegm/segmct.m) function are the raw DAPI channel, estimated nucleus size (minimum and maximum in cubic micron) and a matlab structured array called `prm` which takes in the above mentioned options. 
 
 The options given to `prm` suitable for the current mouse data are shown below. 
 
@@ -265,3 +265,117 @@ ans =
     'ROI8'    [ 4×1 double]     4       [ 4×1 double]    { 4×1 cell}    { 4×1 cell}
 
 ```
+
+The above matlab tables for all the images are consolidated into single `R` objects like below.
+
+```R
+head(long_data) #ROI based information
+       no_of_dots_c1 avg_dot_size_c1 min_dot_size_c1 max_dot_size_c1
+ROI1_1             0            0.00               0               0
+ROI2_1            10            2.30               1               6
+ROI3_1             0            0.00               0               0
+ROI4_1             5            6.60               1              27
+ROI5_1            16            6.75               1              41
+ROI6_1             0            0.00               0               0
+       avg_dot_Intensity_c1 max_dot_Intensity_c1 no_of_dots_c2 avg_dot_size_c2
+ROI1_1                0.000                0.000             0        0.000000
+ROI2_1             5263.275             7184.000            12        9.583333
+ROI3_1                0.000                0.000             1        1.000000
+ROI4_1             6167.333             7216.000             2        3.500000
+ROI5_1             4759.467             7698.317             8       10.500000
+ROI6_1                0.000                0.000             4        2.000000
+       min_dot_size_c2 max_dot_size_c2 avg_dot_Intensity_c2
+ROI1_1               0               0                 0.00
+ROI2_1               1              31             15489.36
+ROI3_1               1               1              9860.00
+ROI4_1               3               4             17448.46
+ROI5_1               1              26             20055.79
+ROI6_1               1               3             10800.71
+       max_dot_Intensity_c2 no_of_dots_c3 avg_dot_size_c3 min_dot_size_c3
+ROI1_1                 0.00             0               0               0
+ROI2_1             25303.38             1               1               1
+ROI3_1              9860.00             0               0               0
+ROI4_1             23340.67             0               0               0
+ROI5_1             26796.38             0               0               0
+ROI6_1             11719.50             1               3               3
+       max_dot_size_c3 avg_dot_Intensity_c3 max_dot_Intensity_c3 Image_no
+ROI1_1               0                    0                    0        1
+ROI2_1               1                 4514                 4514        1
+ROI3_1               0                    0                    0        1
+ROI4_1               0                    0                    0        1
+ROI5_1               0                    0                    0        1
+ROI6_1               3                 6275                 6275        1
+       treatment               Image
+ROI1_1       ECS 9029_WT_ECS_Ctx_1_1
+ROI2_1       ECS 9029_WT_ECS_Ctx_1_1
+ROI3_1       ECS 9029_WT_ECS_Ctx_1_1
+ROI4_1       ECS 9029_WT_ECS_Ctx_1_1
+ROI5_1       ECS 9029_WT_ECS_Ctx_1_1
+ROI6_1       ECS 9029_WT_ECS_Ctx_1_1
+
+head(man) #image based information
+                                                                                                                                        allfiles
+1 /dcl01/lieber/ajaffe/Maddy/RNAscope/mouse/Data/9029/9029_Ctx_Raw/9029_WT_ECS_Ctx_1_1_extracted_data/9029_WT_ECS_Ctx_1_1_allchannel_summary.csv
+2 /dcl01/lieber/ajaffe/Maddy/RNAscope/mouse/Data/9029/9029_Ctx_Raw/9029_WT_ECS_Ctx_1_2_extracted_data/9029_WT_ECS_Ctx_1_2_allchannel_summary.csv
+3 /dcl01/lieber/ajaffe/Maddy/RNAscope/mouse/Data/9029/9029_Ctx_Raw/9029_WT_ECS_Ctx_2_1_extracted_data/9029_WT_ECS_Ctx_2_1_allchannel_summary.csv
+4 /dcl01/lieber/ajaffe/Maddy/RNAscope/mouse/Data/9029/9029_Ctx_Raw/9029_WT_ECS_Ctx_2_2_extracted_data/9029_WT_ECS_Ctx_2_2_allchannel_summary.csv
+5 /dcl01/lieber/ajaffe/Maddy/RNAscope/mouse/Data/9029/9029_Ctx_Raw/9029_WT_ECS_Ctx_3_1_extracted_data/9029_WT_ECS_Ctx_3_1_allchannel_summary.csv
+6 /dcl01/lieber/ajaffe/Maddy/RNAscope/mouse/Data/9029/9029_Ctx_Raw/9029_WT_ECS_Ctx_3_2_extracted_data/9029_WT_ECS_Ctx_3_2_allchannel_summary.csv
+                            samplestring animalID treatment region
+1 9029_WT_ECS_Ctx_1_1_allchannel_summary     9029       ECS    Ctx
+2 9029_WT_ECS_Ctx_1_2_allchannel_summary     9029       ECS    Ctx
+3 9029_WT_ECS_Ctx_2_1_allchannel_summary     9029       ECS    Ctx
+4 9029_WT_ECS_Ctx_2_2_allchannel_summary     9029       ECS    Ctx
+5 9029_WT_ECS_Ctx_3_1_allchannel_summary     9029       ECS    Ctx
+6 9029_WT_ECS_Ctx_3_2_allchannel_summary     9029       ECS    Ctx
+                Image
+1 9029_WT_ECS_Ctx_1_1
+2 9029_WT_ECS_Ctx_1_2
+3 9029_WT_ECS_Ctx_2_1
+4 9029_WT_ECS_Ctx_2_2
+5 9029_WT_ECS_Ctx_3_1
+6 9029_WT_ECS_Ctx_3_2
+
+```
+ROIs with more than 0 transcripts are recruited for each channel and k-means is run on each channel data like below. ROIs with 0 transcripts are assigned directly to "Low" group.
+
+``` R
+# the following dataframe is made from the above long_data for channel1 (c1 - BdnfEx4) excluding ROIs that have less than 1 transcript
+
+head(c1)
+        no_of_dots_c1 avg_dot_size_c1 avg_dot_Intensity_c1 treatment Image_no
+ROI2_1             10        2.300000             5263.275       ECS        1
+ROI4_1              5        6.600000             6167.333       ECS        1
+ROI5_1             16        6.750000             4759.467       ECS        1
+ROI7_1              3        3.333333             5746.333       ECS        1
+ROI9_1              3        5.000000             6338.833       ECS        1
+ROI10_1            10        3.600000             5313.039       ECS        1
+
+
+results_c1 = kmeans(subset(c1, select = c("no_of_dots_c1","avg_dot_size_c1")),3) #this clusters all the ROIs in c1 into 1,2,3 groups based on number of dots per ROI and average dot size per ROI
+```
+The `results_c1` object has the output from k-means. The `cluster` component of the results object shows which group each ROI is assigned to and the `centers` component shows where each of the cluster's centers lie. ROIs assigned to group 1 are labelled as "Low" since the centers lie at the lowest end and ROIs assigned to group 3 are labelled as "High" since the centers lie at the highest end, the rest of the ROIs that are group 2 are labelled as "Medium". 
+
+```R
+
+head(results_avgdotsize_c11$cluster)
+ ROI2_1  ROI4_1  ROI5_1  ROI7_1  ROI9_1 ROI10_1 
+      1       1       2       1       1       2 
+
+ results_avgdotsize_c11$centers
+  no_of_dots_c1 avg_dot_size_c1
+1       3.49784        3.005068
+2      15.40827        6.598141
+3      36.03497       10.029988
+
+```
+
+The k-means output when plotted
+<img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/Kmeans-BdnfEx4.jpg" title="k-means" width="300"/> 
+
+
+
+
+
+
+
