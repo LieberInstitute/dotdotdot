@@ -322,7 +322,7 @@ node), split, n, loss, yval, (yprob)
 
 aa_test$rcluster = predict(fit, aa_test, type = "class") #cell labels for whole dataset are similary predicted
 
-aa_test
+aa_test #Kcluster(manually annotated) Rcluster(CART predicted)
 
                        name RVolume        PP520        PP570        PP620
 530  Br1350_Strip2_LayerVI_1   18242 8.551694e-03 0.2487117641 3.124657e-03
