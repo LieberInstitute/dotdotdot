@@ -287,7 +287,7 @@ head(aa_test)
 540 0.00000000       n     Glia    
 543 0.68528464       r  SLC17A7  
 
-head(aa_train[,-c(9)])
+head(aa_train)
                        name RVolume       PP520        PP570        PP620
 527 Br1350_Strip2_LayerVI_1   13293 0.339501994 0.0382908298 0.0005265929
 528 Br1350_Strip2_LayerVI_1   79877 0.040186787 0.0254391126 0.0004381737
