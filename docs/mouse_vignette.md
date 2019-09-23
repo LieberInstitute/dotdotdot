@@ -35,7 +35,7 @@ maxN = ((4/3)*(pi)*(Z*0.4/2)^3); % maximum nucleus volume in cubic micron given 
 [cellbw1,~,~,~] = cellsegm.segmct(DAPIchannel,minZ,maxZ,'prm',prm);
 ```
 
-The above `prm` structure is default for the `rnascope_mouse` function. When the `rnascope_mouse` is run it produces the following output on command line explaining the process.
+The above `prm` structure is default for the [rnascope_mouse](https://github.com/LieberInstitute/dotdotdot/blob/master/toolbox/rnascope_mouse.m) function. When the [rnascope_mouse](https://github.com/LieberInstitute/dotdotdot/blob/master/toolbox/rnascope_mouse.m) is run it produces the following output on command line explaining the process.
 
 ```matlab
 >> rnascope_mouse(filename, toolbox)
@@ -156,7 +156,7 @@ CHANNEL img.EGFP:  284 dots detected
 completed EGFP
 Elapsed time is 0.334633 seconds.
 ```
-The above function outputs the following four `.mat` files that are saved where the input `.czi` file is located.
+The [rnascope_mouse](https://github.com/LieberInstitute/dotdotdot/blob/master/toolbox/rnascope_mouse.m) function outputs the following four `.mat` files that are saved where the input `.czi` file is located.
 These matfiles are matlab structures with each field being a channel from the `.czi` file.
 
 [raw data ~/Mouse2_img.mat](https://github.com/LieberInstitute/dotdotdot/blob/master/output/Mouse2_img.mat)
