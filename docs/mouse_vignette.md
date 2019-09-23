@@ -314,27 +314,28 @@ ROI5_1       ECS 9029_WT_ECS_Ctx_1_1
 ROI6_1       ECS 9029_WT_ECS_Ctx_1_1
 
 head(man) #image based information
-                                                                                                                                        allfiles
-1 /dcl01/lieber/ajaffe/Maddy/RNAscope/mouse/Data/9029/9029_Ctx_Raw/9029_WT_ECS_Ctx_1_1_extracted_data/9029_WT_ECS_Ctx_1_1_allchannel_summary.csv
-2 /dcl01/lieber/ajaffe/Maddy/RNAscope/mouse/Data/9029/9029_Ctx_Raw/9029_WT_ECS_Ctx_1_2_extracted_data/9029_WT_ECS_Ctx_1_2_allchannel_summary.csv
-3 /dcl01/lieber/ajaffe/Maddy/RNAscope/mouse/Data/9029/9029_Ctx_Raw/9029_WT_ECS_Ctx_2_1_extracted_data/9029_WT_ECS_Ctx_2_1_allchannel_summary.csv
-4 /dcl01/lieber/ajaffe/Maddy/RNAscope/mouse/Data/9029/9029_Ctx_Raw/9029_WT_ECS_Ctx_2_2_extracted_data/9029_WT_ECS_Ctx_2_2_allchannel_summary.csv
-5 /dcl01/lieber/ajaffe/Maddy/RNAscope/mouse/Data/9029/9029_Ctx_Raw/9029_WT_ECS_Ctx_3_1_extracted_data/9029_WT_ECS_Ctx_3_1_allchannel_summary.csv
-6 /dcl01/lieber/ajaffe/Maddy/RNAscope/mouse/Data/9029/9029_Ctx_Raw/9029_WT_ECS_Ctx_3_2_extracted_data/9029_WT_ECS_Ctx_3_2_allchannel_summary.csv
-                            samplestring animalID treatment region
-1 9029_WT_ECS_Ctx_1_1_allchannel_summary     9029       ECS    Ctx
-2 9029_WT_ECS_Ctx_1_2_allchannel_summary     9029       ECS    Ctx
-3 9029_WT_ECS_Ctx_2_1_allchannel_summary     9029       ECS    Ctx
-4 9029_WT_ECS_Ctx_2_2_allchannel_summary     9029       ECS    Ctx
-5 9029_WT_ECS_Ctx_3_1_allchannel_summary     9029       ECS    Ctx
-6 9029_WT_ECS_Ctx_3_2_allchannel_summary     9029       ECS    Ctx
-                Image
-1 9029_WT_ECS_Ctx_1_1
-2 9029_WT_ECS_Ctx_1_2
-3 9029_WT_ECS_Ctx_2_1
-4 9029_WT_ECS_Ctx_2_2
-5 9029_WT_ECS_Ctx_3_1
-6 9029_WT_ECS_Ctx_3_2
+                                                                                                                             
+                            samplestring animalID treatment region total nuclei
+1 9029_WT_ECS_Ctx_1_1_allchannel_summary     9029       ECS    Ctx           96
+2 9029_WT_ECS_Ctx_1_2_allchannel_summary     9029       ECS    Ctx          105
+3 9029_WT_ECS_Ctx_2_1_allchannel_summary     9029       ECS    Ctx          106
+4 9029_WT_ECS_Ctx_2_2_allchannel_summary     9029       ECS    Ctx          111
+5 9029_WT_ECS_Ctx_3_1_allchannel_summary     9029       ECS    Ctx          111
+6 9029_WT_ECS_Ctx_3_2_allchannel_summary     9029       ECS    Ctx           99
+  BdnfEx4 Nuc dots BdnfEx1 Nuc dots Arc Nuc dots BdnfEx4 Tot dots
+1              375              143          437              892
+2              379              208          491              891
+3              689              289          926             1436
+4             1030              548         1421             2170
+5             1162              319         1246             3668
+6              780              482         1214             2091
+  BdnfEx1 Tot dots Arc Tot dots BdnfEx4 Cyt dots BdnfEx1 Cyt dots Arc Cyt dots
+1              359         1505              517              216         1068
+2              578         1897              512              370         1406
+3              663         3110              747              374         2184
+4             1235         5042             1140              687         3621
+5             1117         5541             2506              798         4295
+6             1118         4478             1311              636         3264
 
 ```
 ROIs with more than 0 transcripts are recruited for each channel and k-means is run on each channel data like below. ROIs with 0 transcripts are assigned directly to "Low" group.
