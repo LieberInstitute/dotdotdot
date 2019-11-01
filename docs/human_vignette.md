@@ -8,14 +8,14 @@ The corresponding segmentions from Dotdotdot
 
 <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/output/Human2_segmentation_DAPILp3.jpg" title="DAPI" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/output/Human2_segmentation_Opal520_Lp20.jpg" title="Opal 520" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/output/Human2_segmentation_Opal570Lp1_0.jpg" title="Opal 520" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/output/Human2_segmentation_Opal620_Lp20.jpg" title="Opal 520" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/output/Human2_segmentation_Opal690Lp30.jpg" title="Opal 520" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/output/Human2_segmentation_No103_Lipofuscin_63x.jpg" title="Opal 520" width="225"/> <br/>
 
-Download the [toolbox](https://github.com/LieberInstitute/dotdotdot/tree/master/toolbox) directory and assign the paths of input `czi` file and toolbox to Matlab variables as shown below. Other inputs are DAPI, LIP, DROP which are name of DAPI, Lipofuscin and channels to be dropped from processing. If you do not have Lipofuscin channel or if you donot want to drop any channels leave them empty. The toolbox should be added to the Matlab’s current working directory to run the code.
+Download the [toolbox](https://github.com/LieberInstitute/dotdotdot/tree/master/toolbox) directory and assign the paths of input `czi` file and toolbox to Matlab variables as shown below. Other inputs are DAPI, LIP, DROP which are the names of DAPI, Lipofuscin and channels to be dropped from processing. If you do not have Lipofuscin channel or if you donot want to drop any channels leave them empty. The toolbox should be added to the Matlab’s current working directory to run the code.
 
 ``` matlab
 >> filename = '/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdot_vignette/dotdot_vignette/Human2.czi';
 >> toolbox  = '/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdot_vignette/dotdot_vignette/toolbox'; 
 >> DAPI = 'DAPILp3'; %
->> LIP = 'No103_Lipofuscin_63x'; % if Lipofuscin channel doesnt exists leave it empty like ‘LIP = ''‘;
->> DROP = 'Ch7'; % we want to drop this residual channel which doesnt contain any data, if you dont want to drop any channel leave them empty like ‘DROP = ''‘; 
+>> LIP = 'No103_Lipofuscin_63x'; % if Lipofuscin channel doesnt exists leave it empty like LIP = '';
+>> DROP = 'Ch7'; % we want to drop this residual channel which doesnt contain any data, if you dont want to drop any channel leave them empty like DROP = ''; 
 >> addpath(genpath(toolbox)) %adding toolbox path to current working directory
 ```
 
