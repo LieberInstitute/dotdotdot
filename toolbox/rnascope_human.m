@@ -1,5 +1,6 @@
 
-function rnascope_human(filename, toolbox)
+
+function rnascope_human(filename, toolbox, DAPI, LIP, DROP)
 
 % filename = '/dcl01/lieber/ajaffe/Maddy/RNAscope/human_pilot/3_28_19_Figure_4_Data_4plex_Human/Br1350/Br1350_Strip2_LayerVI_6_Linear unmixing.czi';
 addpath(genpath(toolbox))
@@ -22,10 +23,21 @@ if isempty(find(cell2mat(O), 1))
 end
 
 	
-for i = 1:numel(O)-1
-  v = char(O(i));
-  v(~isstrprop(v,'alphanum')) = '_';
-  v = ['img.',v];
+for i = 1:numel(O)
+    %% 
+    
+    if strcmp(O(i),DAPI)
+        v = 'img.DAPI';
+    elseif strcmp(O(i),LIP)
+        v = 'img.Lipofuscin';
+    elseif strcmp(O(i),DROP)
+        continue
+    else 
+        v = char(O(i));
+        v(~isstrprop(v,'alphanum')) = '_';
+        v = ['img.',v]; 
+    end
+    
   L = squeeze(image6d(:,:,:,i,:,:));
   S = size(L);
   
@@ -40,10 +52,13 @@ for i = 1:numel(O)-1
 	  
 end
 
-clearex X Y Z filename out toolbox img 
+clearex X Y Z filename out toolbox img LIP
 	  
 disp('extracted')
 disp(fieldnames(img))
+OUTimg = [];
+Lip = '';
+
 	toc 
 	O = fieldnames(img);
 for i = 1:numel(O)
@@ -99,12 +114,14 @@ v = ['excel_totaldots.',O{i}];
 	eval([v '= statsc;'])
 v = ['Segmentations.',O{i}];
 	eval([v '= BWc;']);
-	
-clearex X Y Z filename out toolbox img O Segmentations excel_totaldots i Lip DAPI
+
+OUTimg = [OUTimg ,[max(rescale(img.(O{i})),[],3),ones(X,5); ones(5,Y), ones(5,5); max(BWc,[],3), ones(X,5)]];	
+clearex X Y Z filename out toolbox img O Segmentations excel_totaldots i Lip DAPI OUTimg LIP
 end
 
 %%masking
-	 
+
+if ~isempty(LIP)
 	 mask = O{Lip};		 
 	 eval(['mask = Segmentations.',mask,';']);
 	 Segmentations_m = Segmentations;
@@ -115,38 +132,42 @@ end
 	 v = ['excel_totaldots_mask.',O{i}];
 	 eval([v '= statsc;'])
 	 disp(['Completed Masking ',O{i}]) 
-	 end
-		
+     end
+end
 	
 		 
 	cel = eval(['excel_totaldots.',O{DAPI},'.VoxelIdxList;']);
 			 
-	 for ii = setdiff(1:numel(O),[DAPI,Lip])
+		for ii = setdiff(1:numel(O),[DAPI,Lip])
 	    disp(['Started ',O{ii}])
 		statsc = eval(['excel_totaldots.',O{ii},';']);
-		statsc_m = eval(['excel_totaldots_mask.',O{ii},';']);
+		if ~isempty(LIP) , statsc_m = eval(['excel_totaldots_mask.',O{ii},';']); end
 		
 		 warning('off','all');
 		 		tic
 		 		dots_of_ROI = cell2table({{0},{0},0,{0},{0},{0}},'VariableNames',{'ROI','dotname','count','Volume','Location','Intensity'});
-				dots_of_ROI_m = cell2table({{0},{0},0,{0},{0},{0}},'VariableNames',{'ROI','dotname','count','Volume','Location','Intensity'});
+			if ~isempty(LIP) , dots_of_ROI_m = cell2table({{0},{0},0,{0},{0},{0}},'VariableNames',{'ROI','dotname','count','Volume','Location','Intensity'}); end
 		 		for i = 1:numel(cel) % for loop to find dots in ROI%
 		 			dots=cellfun(@(x) intersect(x,cel{i}), statsc.VoxelIdxList,'UniformOutput', false);
-					dots_m=cellfun(@(x) intersect(x,cel{i}), statsc_m.VoxelIdxList,'UniformOutput', false);
-		 			x = find(~cellfun(@isempty,dots));
-					x_m = find(~cellfun(@isempty,dots_m));
-		 			dots_of_ROI.ROI{i} = sprintf('ROI%d',i);
+					x = find(~cellfun(@isempty,dots));
+					dots_of_ROI.ROI{i} = sprintf('ROI%d',i);
+                    dots_of_ROI.dotname{i} = x;
+                    dots_of_ROI.count(i) = numel(x);
+                    dots_of_ROI.Volume{i} = statsc.Volume(x);
+                    dots_of_ROI.Location{i} = statsc.VoxelIdxList(x);
+                    dots_of_ROI.Intensity{i} = statsc.VoxelValues(x);
+                    
+                    if ~isempty(LIP)
+                    dots_m=cellfun(@(x) intersect(x,cel{i}), statsc_m.VoxelIdxList,'UniformOutput', false);
+                    x_m = find(~cellfun(@isempty,dots_m));
 					dots_of_ROI_m.ROI{i} = sprintf('ROI%d',i);
-		 			dots_of_ROI.dotname{i} = x;
-					dots_of_ROI_m.dotname{i} = x_m;
-		 			dots_of_ROI.count(i) = numel(x);
+                    dots_of_ROI_m.dotname{i} = x_m;
 					dots_of_ROI_m.count(i) = numel(x_m);
-		 			dots_of_ROI.Volume{i} = statsc.Volume(x);
 					dots_of_ROI_m.Volume{i} = statsc_m.Volume(x_m);
-		 			dots_of_ROI.Location{i} = statsc.VoxelIdxList(x);
 					dots_of_ROI_m.Location{i} = statsc_m.VoxelIdxList(x_m);
-		 			dots_of_ROI.Intensity{i} = statsc.VoxelValues(x);
 					dots_of_ROI_m.Intensity{i} = statsc_m.VoxelValues(x_m);
+                    end
+                    
 		 		disp([num2str(i),' cells finished in time ', num2str(toc),'s'])
 		 		clear x
 				
@@ -154,12 +175,24 @@ end
 		 warning('on','all');
 		 		v = ['excel_dots_of_ROI.',O{ii}];
 		 		eval([v '= dots_of_ROI;'])
-			 	v = ['excel_dots_of_ROI_mask.',O{ii}];
+			 	
+                if ~isempty(LIP)
+                v = ['excel_dots_of_ROI_mask.',O{ii}];
 			 	eval([v '= dots_of_ROI_m;'])
-	 end 	 
-		 
+                end
+         end 	
+ 
+if ~isempty(LIP)
 save([filename(1:end-4),'_img.mat'],'img','-v7.3')
 save([filename(1:end-4),'_segmentation.mat'],'Segmentations','Segmentations_m')
 save([filename(1:end-4),'_totaldots.mat'],'excel_totaldots','excel_totaldots_mask') 
 save([filename(1:end-4),'_dots_of_ROI.mat'],'excel_dots_of_ROI','excel_dots_of_ROI_mask') 
+else 
+save([filename(1:end-4),'_img.mat'],'img','-v7.3')
+save([filename(1:end-4),'_segmentation.mat'],'Segmentations')
+save([filename(1:end-4),'_totaldots.mat'],'excel_totaldots') 
+save([filename(1:end-4),'_dots_of_ROI.mat'],'excel_dots_of_ROI') 
+end
+
+imwrite(OUTimg,[filename(1:end-4),'.png']);
 end
