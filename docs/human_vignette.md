@@ -19,10 +19,10 @@ Download the [toolbox](https://github.com/LieberInstitute/dotdotdot/tree/master/
 >> addpath(genpath(toolbox)) %adding toolbox path to current working directory
 ```
 
-The command ‘rnascope_human’ takes in the filename and toolbox as inputs.
+The command ‘rnascope_human’ takes in the filename, toolbox, DAPI, LIP and DROP as inputs.
 
 ```matlab
->> rnascope_human(filename, toolbox)
+>> rnascope_human(filename, toolbox, DAPI, LIP, DROP)
 
 Reading Images:  1  of  70 Frames
 Reading Images:  2  of  70 Frames
