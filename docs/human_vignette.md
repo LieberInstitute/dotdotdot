@@ -19,7 +19,7 @@ Download the [toolbox](https://github.com/LieberInstitute/dotdotdot/tree/master/
 >> addpath(genpath(toolbox)) %adding toolbox path to current working directory
 ```
 
-The command ‘rnascope_human’ takes in the filename, toolbox, DAPI, LIP and DROP as inputs. 
+The command [rnascope_human](https://github.com/LieberInstitute/dotdotdot/tree/master/toolbox/rnascope_human.m) takes in the filename, toolbox, DAPI, LIP and DROP as inputs. 
 
 ```matlab
 >> rnascope_human(filename, toolbox, DAPI, LIP, DROP)
@@ -77,7 +77,7 @@ Started Opal690Lp30
 4 cells finished in time 1.4843s
 5 cells finished in time 1.8443s
 ```
-To run processing on ‘.tif‘ files where each channel is saved as individual tif file for example like below 
+To run processing on `.tif` files where each channel is saved as individual tif file for example like below 
 
 ``` matlab
 %sample 1
@@ -94,7 +94,7 @@ To run processing on ‘.tif‘ files where each channel is saved as individual 
 122718_NPY86_4_L_40x_00007_Overlay.tif
 
 ```
-Then the command ‘rnascope_human_tif’ is used with similar inputs (filename, toolbox, DAPI, LIP and DROP). Except the filename is only the sample name without the channel extensions, like below
+Then the command [rnascope_human_tif](https://github.com/LieberInstitute/dotdotdot/tree/master/toolbox/rnascope_human_tif.m) is used with similar inputs (filename, toolbox, DAPI, LIP and DROP). Except the filename is only the sample name without the channel extensions, like below
 
 ```matlab
 >> filename = '/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdot_vignette/tiffFiles/122718_NPY86_4_L_40x_00008';
@@ -252,6 +252,11 @@ ans =
     'ROI5'    [12×1 double]    12       [12×1 double]    {12×1 cell}    {12×1 cell}
 
 ```
+
+The filter size for DAPI smoothening can be adjusted according to the nuclei size in your images. Line 72 in [rnascope_human.m](https://github.com/LieberInstitute/dotdotdot/tree/master/toolbox/rnascope_human.m) channel = medfilt3(eval(channe_i),`[19 19 3]`);.  Line 47 in [rnascope_human_tif.m](https://github.com/LieberInstitute/dotdotdot/tree/master/toolbox/rnascope_human_tif.m) channel = medfilt3(eval(channe_i),`[7 7 3]`);. 
+
+Similary the threshold for gene channel can be increased or decreased at Line 75 in [rnascope_human.m](https://github.com/LieberInstitute/dotdotdot/tree/master/toolbox/rnascope_human.m) channel = imhmin(eval(channe_i),`1`*std2(eval(channe_i)));Line 50 in [rnascope_human_tif.m](https://github.com/LieberInstitute/dotdotdot/tree/master/toolbox/rnascope_human_tif.m) channel = imhmin(eval(channe_i),`2`*std2(eval(channe_i)));
+
 The above matlab tables for all the images are consolidated into single R dataframe like below, where RVolume is volume of ROI, P520 is number of ROI pixels covered with gene in channel 520, MP520 is number of ROI pixels covered with gene in channel 520 after lipofuscin masking, MI_P520 is mean intensity of ROI pixels covered with gene, MI_MP520 is mean intensity of ROI pixels covered with gene after lipofuscin masking, PP520 is proportion of ROI covered with 520 pixels.
 
 ```R
