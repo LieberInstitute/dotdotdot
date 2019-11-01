@@ -19,7 +19,7 @@ Download the [toolbox](https://github.com/LieberInstitute/dotdotdot/tree/master/
 >> addpath(genpath(toolbox)) %adding toolbox path to current working directory
 ```
 
-The command ‘rnascope_human’ takes in the filename, toolbox, DAPI, LIP and DROP as inputs.
+The command ‘rnascope_human’ takes in the filename, toolbox, DAPI, LIP and DROP as inputs. 
 
 ```matlab
 >> rnascope_human(filename, toolbox, DAPI, LIP, DROP)
@@ -77,9 +77,35 @@ Started Opal690Lp30
 4 cells finished in time 1.4843s
 5 cells finished in time 1.8443s
 ```
+To run processing on ‘.tif‘ files where each channel is saved as individual tif file for example like below 
 
-The above function outputs the following four `.mat` files that are saved where the input `.czi` file is located.
-These matfiles are matlab structures with each field being a channel from the `.czi` file.
+``` matlab
+%sample 1
+122718_NPY86_4_L_40x_00008_CH1.tif
+122718_NPY86_4_L_40x_00008_CH2.tif
+122718_NPY86_4_L_40x_00008_CH3.tif
+122718_NPY86_4_L_40x_00008_CH4.tif
+122718_NPY86_4_L_40x_00008_Overlay.tif
+%sample 2
+122718_NPY86_4_L_40x_00007_CH1.tif
+122718_NPY86_4_L_40x_00007_CH2.tif
+122718_NPY86_4_L_40x_00007_CH3.tif
+122718_NPY86_4_L_40x_00007_CH4.tif
+122718_NPY86_4_L_40x_00007_Overlay.tif
+
+```
+Then the command ‘rnascope_human_tif’ is used with similar inputs (filename, toolbox, DAPI, LIP and DROP). Except the filename is only the sample name without the channel extensions, like below
+
+```matlab
+>> filename = '/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdot_vignette/tiffFiles/122718_NPY86_4_L_40x_00008';
+>> toolbox = '/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdot_vignette/dotdot_vignette/toolbox'; 
+>> DAPI = 'CH4'; %CH4 is the DAPI channel or DAPI image
+>> LIP = ''; %there is no Lipofuscin channel
+>> DROP = 'Overlay'; % We donot want to process the Overlaid image
+```
+
+The above functions outputs the following four `.mat` files that are saved where the input `.czi` or `.tif` file is located.
+These matfiles are matlab structures with each field being a channel from the `.czi` or `.tif` file.
 
 [raw data ~/Human2_img.mat](https://github.com/LieberInstitute/dotdotdot/blob/master/output/Human2_img.mat)
 
