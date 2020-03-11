@@ -123,7 +123,7 @@ for k = 1:no_of_dots
 end
 
 tim = getframe(gca); 
-BWc = tim.cdata;
+BWc = im2double(tim.cdata);
 close all
 temp_img = max(rescale(img.(O{i})),[],3);
 OUTimg = [OUTimg ,[cat(3,temp_img,temp_img,temp_img),ones(X,5,3); ones(5,Y,3), ones(5,5,3); BWc, ones(X,5,3)]];
