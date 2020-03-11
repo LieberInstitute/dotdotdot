@@ -115,7 +115,25 @@ v = ['excel_totaldots.',O{i}];
 v = ['Segmentations.',O{i}];
 	eval([v '= BWc;']);
 
-OUTimg = [OUTimg ,[max(rescale(img.(O{i})),[],3),ones(X,5); ones(5,Y), ones(5,5); max(BWc,[],3), ones(X,5)]];	
+if contains(channe_i,'DAPI')
+figure('Visible','off')
+imshow(max(BWc,[],3))
+for k = 1:no_of_dots
+    text(statsc.Centroid(k,1),statsc.Centroid(k,2),num2str(k), 'Color', 'red', 'Fontsize',15); 
+end
+
+tim = getframe(gca); 
+BWc = tim.cdata;
+close all
+temp_img = max(rescale(img.(O{i})),[],3);
+OUTimg = [OUTimg ,[cat(3,temp_img,temp_img,temp_img),ones(X,5,3); ones(5,Y,3), ones(5,5,3); BWc, ones(X,5,3)]];
+
+else
+
+temp_img = max(rescale(img.(O{i})),[],3);
+OUTimg = [OUTimg ,[cat(3,temp_img,temp_img,temp_img),ones(X,5,3); ones(5,Y,3), ones(5,5,3); cat(3,max(BWc,[],3),max(BWc,[],3),max(BWc,[],3)), ones(X,5,3)]];	
+
+end
 clearex X Y Z filename out toolbox img O Segmentations excel_totaldots i Lip DAPI OUTimg LIP
 end
 
