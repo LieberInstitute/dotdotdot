@@ -266,7 +266,28 @@ ans =
 
 ```
 
-The above matlab tables for all the images are consolidated into single `R` objects like below.
+The above matlab tables for all the images are consolidated into single `R` objects like below, using the [final_table](https://github.com/LieberInstitute/dotdotdot/blob/master/toolbox/final_table.m) matlab function.
+
+``` matlab
+path1 = '/dcl01/lieber/ajaffe/Stephanie/Data/PTSD_BKB/';
+ext = '*.czi';
+toolbox = '/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdotdot/dotdot_vignette/toolbox';
+channels = {'DAPI';'Opal520_Lp20';'Opal570Lp1_0';'Opal620_LP10';'Opal690Lp30';'Lipofuscin'};
+
+final_table(path1,ext,toolbox,channels)
+
+/dcl01/lieber/ajaffe/Stephanie/Data/PTSD_BKB/ : 34
+
+file 1 completed
+file 2 completed
+file 3 completed
+file 4 completed
+file 5 completed
+.
+.
+.
+```
+
 
 ```R
 head(long_data) #ROI based information
