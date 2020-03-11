@@ -257,7 +257,28 @@ The filter size for DAPI smoothening can be adjusted according to the nuclei siz
 
 Similary the threshold for gene channel can be increased or decreased at Line 75 in [rnascope_human.m](https://github.com/LieberInstitute/dotdotdot/tree/master/toolbox/rnascope_human.m) channel = imhmin(eval(channe_i),`1`*std2(eval(channe_i)));Line 50 in [rnascope_human_tif.m](https://github.com/LieberInstitute/dotdotdot/tree/master/toolbox/rnascope_human_tif.m) channel = imhmin(eval(channe_i),`2`*std2(eval(channe_i)));
 
-The above matlab tables for all the images are consolidated into single R dataframe like below, where RVolume is volume of ROI, P520 is number of ROI pixels covered with gene in channel 520, MP520 is number of ROI pixels covered with gene in channel 520 after lipofuscin masking, MI_P520 is mean intensity of ROI pixels covered with gene, MI_MP520 is mean intensity of ROI pixels covered with gene after lipofuscin masking, PP520 is proportion of ROI covered with 520 pixels.
+The above matlab tables for all the images are consolidated into excel files (long_data - ROI level, man - Image level) saved in the path `path1`, using the [final_table](https://github.com/LieberInstitute/dotdotdot/blob/master/toolbox/final_table.m) matlab function.
+
+``` matlab
+path1 = '/dcl01/lieber/ajaffe/Stephanie/Data/PTSD_BKB/';
+ext = '*.czi';
+toolbox = '/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdotdot/dotdot_vignette/toolbox';
+channels = {'DAPI';'Opal520_Lp20';'Opal570Lp1_0';'Opal620_LP10';'Opal690Lp30';'Lipofuscin'};
+
+final_table(path1,ext,toolbox,channels)
+
+/dcl01/lieber/ajaffe/Stephanie/Data/PTSD_BKB/ : 34
+
+file 1 completed
+file 2 completed
+file 3 completed
+file 4 completed
+file 5 completed
+.
+.
+.
+```
+The above excel files are extracted into Robjects like below, RVolume is volume of ROI, P520 is number of ROI pixels covered with gene in channel 520, MP520 is number of ROI pixels covered with gene in channel 520 after lipofuscin masking, MI_P520 is mean intensity of ROI pixels covered with gene, MI_MP520 is mean intensity of ROI pixels covered with gene after lipofuscin masking, PP520 is proportion of ROI covered with 520 pixels.
 
 ```R
 head(long_Dat)
