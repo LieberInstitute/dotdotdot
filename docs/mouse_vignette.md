@@ -266,7 +266,7 @@ ans =
 
 ```
 
-The above matlab tables for all the images are consolidated into single `R` objects like below, using the [final_table](https://github.com/LieberInstitute/dotdotdot/blob/master/toolbox/final_table.m) matlab function.
+The above matlab tables for all the images are consolidated into excel files (long_data - ROI level, man - Image level) saved in the path `path1`, using [final_table](https://github.com/LieberInstitute/dotdotdot/blob/master/toolbox/final_table.m) matlab function.
 
 ``` matlab
 path1 = '/dcl01/lieber/ajaffe/Stephanie/Data/PTSD_BKB/';
@@ -287,7 +287,7 @@ file 5 completed
 .
 .
 ```
-
+These excel files are extracted into R objects like below.
 
 ```R
 head(long_data) #ROI based information
