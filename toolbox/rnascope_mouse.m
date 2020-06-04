@@ -17,7 +17,7 @@ voxelSizeY = out{2}.ScaleY;
 voxelSizeZ = out{2}.ScaleZ;
 image6d = out{1}; 
 
-out{1,2}.Dyes = {'Cy5','DsRed','EGFP','DAPI'}; %dye names are wiped out when cropped and the channel names have no information
+%out{1,2}.Dyes = {'Cy5','DsRed','EGFP','DAPI'}; %dye names are wiped out when cropped and the channel names have no information
 
 
 d = find(cellfun(@(x) contains(x,"DAPI"), out{2}.Dyes), 1);
