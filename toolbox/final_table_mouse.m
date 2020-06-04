@@ -1,9 +1,9 @@
 function final_table_mouse(path1,ext,toolbox,channels)
 
-%path1 = '/dcl01/lieber/ajaffe/Stephanie/Data/PTSD_BKB/';
-%ext = '*.czi';
+%path1 = '/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdotdot/dotdot_vignette/';
+%ext = 'Mouse*.czi';
 %toolbox = '/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdotdot/dotdot_vignette/toolbox';
-%channels = {'DAPI';'Opal520_Lp20';'Opal570Lp1_0';'Opal620_LP10';'Opal690Lp30';'Lipofuscin'};
+%channels = {'Cy5','DsRed','EGFP','DAPI'};
 
 addpath(genpath(toolbox))
 	myfiles = dir(fullfile(path1,ext));
