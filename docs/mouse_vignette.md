@@ -37,6 +37,8 @@ maxN = ((4/3)*(pi)*(Z*0.4/2)^3); % maximum nucleus volume in cubic micron given 
 
 The above `prm` structure is default for the [rnascope_mouse](https://github.com/LieberInstitute/dotdotdot/blob/master/toolbox/rnascope_mouse.m) function. When the [rnascope_mouse](https://github.com/LieberInstitute/dotdotdot/blob/master/toolbox/rnascope_mouse.m) is run it produces the following output on command line explaining the process.
 
+The channel/dye names in the sample mouse data were wiped out when we cropped the images (since they were too big to version control on GitHub). Line #20 in [rnascope_mouse](https://github.com/LieberInstitute/dotdotdot/blob/master/toolbox/rnascope_mouse.m) adds default channel names to these sample data, which should be commented out when using the code with real data. 
+
 ```matlab
 >> rnascope_mouse(filename, toolbox)
 Reading Images:  1  of  72 Frames
