@@ -284,7 +284,7 @@ file 1 completed
 file 2 completed
 file 3 completed
 ```
-These excel files are extracted into R objects like below.
+These csv files [long_data](https://github.com/LieberInstitute/dotdotdot/blob/master/output/Mouse_long_data.csv), [man](https://github.com/LieberInstitute/dotdotdot/blob/master/output/Mouse_man).csv are extracted into R objects like below.
 
 ```R
 head(long_data) #ROI based information
