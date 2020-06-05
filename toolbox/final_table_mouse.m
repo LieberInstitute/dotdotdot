@@ -76,6 +76,6 @@ clearex myfiles ROI fn path1 Img channels
 disp(['file ',num2str(fn),' completed'])
 end
 
-writetable(ROI,[path1,'long_data.csv'])
-writetable(Img,[path1,'man.csv'])
+writetable(ROI,fullfile(path1,'long_data.csv'))
+writetable(Img,fullfile(path1,'man.csv'))
 end
