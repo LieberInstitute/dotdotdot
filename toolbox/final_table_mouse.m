@@ -31,9 +31,10 @@ end
 
 name = myfiles(fn).name(1:end-4);
 Img1 = cell2table({name});
+Da = find(contains(channels,'DAPI'));
 
-names = repmat({name},size(excel_totaldots.DAPI,1),1);
-RVolume = excel_totaldots.DAPI.Volume;
+names = repmat({name},size(excel_totaldots.(channels{Da}),1),1);
+RVolume = excel_totaldots.(channels{Da}).Volume;
 ROI1 = [cell2table(names),table(RVolume)];
 
 for ch = 1:numel(channels)
@@ -47,14 +48,14 @@ end
 
 Img = [Img;Img1];
 
-Da = find(contains(channels,'DAPI'));
+
 for ch = 1:numel(channels)
     
     if ch == Da 
         continue
     end
     
-O = cellfun(@(x) intersect(x,cat(1,excel_totaldots.(channels{ch}).VoxelIdxList{:})), excel_totaldots.DAPI.VoxelIdxList, 'UniformOutput',false);
+O = cellfun(@(x) intersect(x,cat(1,excel_totaldots.(channels{ch}).VoxelIdxList{:})), excel_totaldots.(channels{Da}).VoxelIdxList, 'UniformOutput',false);
 eval(['O_',channels{ch},'=O;']);
 P = cellfun(@(x) numel(x),O);
 eval(['P_',channels{ch},'=P;']);
