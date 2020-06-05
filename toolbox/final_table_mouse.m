@@ -1,8 +1,8 @@
 function final_table_mouse(path1,ext,toolbox,channels)
 
-%path1 = '/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdotdot/dotdot_vignette/';
+%path1 = '*/dotdotdot/output';
 %ext = 'Mouse*.czi';
-%toolbox = '/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdotdot/dotdot_vignette/toolbox';
+%toolbox = '*/dotdotdot/toolbox';
 %channels = {'Cy5','DsRed','EGFP','DAPI'};
 
 addpath(genpath(toolbox))
