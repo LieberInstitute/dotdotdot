@@ -271,23 +271,18 @@ ans =
 The above matlab tables for all the images are consolidated into excel files (long_data - ROI level, man - Image level) saved in the path `path1`, using [final_table_mouse](https://github.com/LieberInstitute/dotdotdot/blob/master/toolbox/final_table_mouse.m) matlab function.
 
 ``` matlab
-path1 = '/dcl01/lieber/ajaffe/Stephanie/Data/PTSD_BKB/';
-ext = '*.czi';
-toolbox = '/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdotdot/dotdot_vignette/toolbox';
-channels = {'DAPI';'Opal520_Lp20';'Opal570Lp1_0';'Opal620_LP10';'Opal690Lp30';'Lipofuscin'};
+path1 = '/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdotdot/dotdotdot_repo/dotdotdot/output';
+ext = 'Mouse*.czi';
+toolbox = '/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdotdot/dotdotdot_repo/dotdotdot/toolbox';
+channels = {'Cy5','DsRed','EGFP','DAPI'};
 
-final_table(path1,ext,toolbox,channels)
+final_table_mouse(path1,ext,toolbox,channels)
 
-/dcl01/lieber/ajaffe/Stephanie/Data/PTSD_BKB/ : 34
+/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdotdot/dotdotdot_repo/dotdotdot/output : 3
 
 file 1 completed
 file 2 completed
 file 3 completed
-file 4 completed
-file 5 completed
-.
-.
-.
 ```
 These excel files are extracted into R objects like below.
 
