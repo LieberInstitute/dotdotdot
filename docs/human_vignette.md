@@ -260,25 +260,20 @@ Similary the threshold for gene channel can be increased or decreased at Line 75
 The above matlab tables for all the images are consolidated into excel files (long_data - ROI level, man - Image level) saved in the path `path1`, using the [final_table](https://github.com/LieberInstitute/dotdotdot/blob/master/toolbox/final_table.m) matlab function.
 
 ``` matlab
-path1 = '/dcl01/lieber/ajaffe/Stephanie/Data/PTSD_BKB/';
-ext = '*.czi';
-toolbox = '/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdotdot/dotdot_vignette/toolbox';
-channels = {'DAPI';'Opal520_Lp20';'Opal570Lp1_0';'Opal620_LP10';'Opal690Lp30';'Lipofuscin'};
+path1 = '/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdotdot/dotdotdot_repo/dotdotdot/output';
+ext = 'Human*.czi';
+toolbox = '/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdotdot/dotdotdot_repo/dotdotdot/toolbox';
+channels = {'DAPILp3','Opal520_Lp20','Opal570Lp1_0','Opal620_LP10','Opal690Lp30','No103_Lipofuscin_63x'};
 
-final_table(path1,ext,toolbox,channels)
+final_table_mouse(path1,ext,toolbox,channels)
 
-/dcl01/lieber/ajaffe/Stephanie/Data/PTSD_BKB/ : 34
+/dcl01/lieber/ajaffe/Maddy/RNAscope/dotdotdot/dotdotdot_repo/dotdotdot/output : 3
 
 file 1 completed
 file 2 completed
 file 3 completed
-file 4 completed
-file 5 completed
-.
-.
-.
 ```
-The above excel files are extracted into Robjects like below, RVolume is volume of ROI, P520 is number of ROI pixels covered with gene in channel 520, MP520 is number of ROI pixels covered with gene in channel 520 after lipofuscin masking, MI_P520 is mean intensity of ROI pixels covered with gene, MI_MP520 is mean intensity of ROI pixels covered with gene after lipofuscin masking, PP520 is proportion of ROI covered with 520 pixels.
+These csv files [long_data](https://github.com/LieberInstitute/dotdotdot/blob/master/output/long_data.csv), [man](https://github.com/LieberInstitute/dotdotdot/blob/master/output/man.csv) are extracted into R objects like below, RVolume is volume of ROI, P520 is number of ROI pixels covered with gene in channel 520, MP520 is number of ROI pixels covered with gene in channel 520 after lipofuscin masking, MI_P520 is mean intensity of ROI pixels covered with gene, MI_MP520 is mean intensity of ROI pixels covered with gene after lipofuscin masking, PP520 is proportion of ROI covered with 520 pixels.
 
 ```R
 head(long_Dat)
