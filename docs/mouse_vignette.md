@@ -1,5 +1,7 @@
 # Mouse RNAscope Workflow
 
+## Running `dotdotdot`
+
 The input [czi](https://github.com/LieberInstitute/dotdotdot/blob/master/images/Mouse1.czi) file has the following channels
 
 <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/MAX_Mouse2-DAPI.jpg" title="DAPI" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/MAX_Mouse2-520.jpg" title="Opal 520" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/MAX_Mouse2-570.jpg" title="Opal 570" width="225"/> <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/MAX_Mouse2-690.jpg" title="Opal 690" width="225"/> <br/>
@@ -284,79 +286,43 @@ file 1 completed
 file 2 completed
 file 3 completed
 ```
+
+
+## Description of output
+
 These csv files [long_data](https://github.com/LieberInstitute/dotdotdot/blob/master/output/Mouse_long_data.csv), [man](https://github.com/LieberInstitute/dotdotdot/blob/master/output/Mouse_man.csv) are extracted into R objects like below.
 
-```R
-head(long_data) #ROI based information
-       no_of_dots_c1 avg_dot_size_c1 min_dot_size_c1 max_dot_size_c1
-ROI1_1             0            0.00               0               0
-ROI2_1            10            2.30               1               6
-ROI3_1             0            0.00               0               0
-ROI4_1             5            6.60               1              27
-ROI5_1            16            6.75               1              41
-ROI6_1             0            0.00               0               0
-       avg_dot_Intensity_c1 max_dot_Intensity_c1 no_of_dots_c2 avg_dot_size_c2
-ROI1_1                0.000                0.000             0        0.000000
-ROI2_1             5263.275             7184.000            12        9.583333
-ROI3_1                0.000                0.000             1        1.000000
-ROI4_1             6167.333             7216.000             2        3.500000
-ROI5_1             4759.467             7698.317             8       10.500000
-ROI6_1                0.000                0.000             4        2.000000
-       min_dot_size_c2 max_dot_size_c2 avg_dot_Intensity_c2
-ROI1_1               0               0                 0.00
-ROI2_1               1              31             15489.36
-ROI3_1               1               1              9860.00
-ROI4_1               3               4             17448.46
-ROI5_1               1              26             20055.79
-ROI6_1               1               3             10800.71
-       max_dot_Intensity_c2 no_of_dots_c3 avg_dot_size_c3 min_dot_size_c3
-ROI1_1                 0.00             0               0               0
-ROI2_1             25303.38             1               1               1
-ROI3_1              9860.00             0               0               0
-ROI4_1             23340.67             0               0               0
-ROI5_1             26796.38             0               0               0
-ROI6_1             11719.50             1               3               3
-       max_dot_size_c3 avg_dot_Intensity_c3 max_dot_Intensity_c3 Image_no
-ROI1_1               0                    0                    0        1
-ROI2_1               1                 4514                 4514        1
-ROI3_1               0                    0                    0        1
-ROI4_1               0                    0                    0        1
-ROI5_1               0                    0                    0        1
-ROI6_1               3                 6275                 6275        1
-       treatment               Image
-ROI1_1       ECS 9029_WT_ECS_Ctx_1_1
-ROI2_1       ECS 9029_WT_ECS_Ctx_1_1
-ROI3_1       ECS 9029_WT_ECS_Ctx_1_1
-ROI4_1       ECS 9029_WT_ECS_Ctx_1_1
-ROI5_1       ECS 9029_WT_ECS_Ctx_1_1
-ROI6_1       ECS 9029_WT_ECS_Ctx_1_1
+The output files have the following columns:
 
-head(man) #image based information
-                                                                                                                             
-                            samplestring animalID treatment region total nuclei
-1 9029_WT_ECS_Ctx_1_1_allchannel_summary     9029       ECS    Ctx           96
-2 9029_WT_ECS_Ctx_1_2_allchannel_summary     9029       ECS    Ctx          105
-3 9029_WT_ECS_Ctx_2_1_allchannel_summary     9029       ECS    Ctx          106
-4 9029_WT_ECS_Ctx_2_2_allchannel_summary     9029       ECS    Ctx          111
-5 9029_WT_ECS_Ctx_3_1_allchannel_summary     9029       ECS    Ctx          111
-6 9029_WT_ECS_Ctx_3_2_allchannel_summary     9029       ECS    Ctx           99
-  BdnfEx4 Nuc dots BdnfEx1 Nuc dots Arc Nuc dots BdnfEx4 Tot dots
-1              375              143          437              892
-2              379              208          491              891
-3              689              289          926             1436
-4             1030              548         1421             2170
-5             1162              319         1246             3668
-6              780              482         1214             2091
-  BdnfEx1 Tot dots Arc Tot dots BdnfEx4 Cyt dots BdnfEx1 Cyt dots Arc Cyt dots
-1              359         1505              517              216         1068
-2              578         1897              512              370         1406
-3              663         3110              747              374         2184
-4             1235         5042             1140              687         3621
-5             1117         5541             2506              798         4295
-6             1118         4478             1311              636         3264
+#### `man.csv`
 
-```
-ROIs with more than 0 transcripts are recruited for each channel and k-means is run on each channel data like below. ROIs with 0 transcripts are assigned directly to "Low" group.
+`man.csv` represents *image-level* summary statistics for each channel of input data (represented as `*`)
+
+- var1: image name,
+- PO_* - total C1 pixels in the image
+- DO_* - total C1 dots in the image
+- IO_* - Mean Intensity of C1 dots in the image
+- MI_* - Mean Intensity of the C1 channel in the image
+
+####  longdat.csv
+
+`longdat.csv` represents *ROI-level* (or *nuclei-level*) summary statistics for each channel of input data (represented as `*`)
+
+- names: image name in that image
+- Volume: ROI volume
+- P_* : total C1 pixels in that ROI
+- MI_P_* : Mean intensity of C1 pixels in that ROI
+- D_* : total C1 dots in that ROI
+- V_* : mean volume/size (in pixels) of C1 dots in that ROI
+- MI_D_* = Mean intensity of C1 dots in that ROI 
+
+These two CSVs can be read into R (or python, or Matlab, or your favorite statistical sofware tool). 
+
+## Downstream analyses
+
+### Creating categorical groups
+
+One potential analysis involved assigning ROIs to qualitative/categorial expression groups. Foe example, ROIs with more than 0 transcripts are recruited for each channel and k-means is run on each channel data like below. ROIs with 0 transcripts are assigned directly to "Low" group.
 
 ``` R
 # the following dataframe is made from the above long_data for channel1 (c1 - BdnfEx4) excluding ROIs that have less than 1 transcript
@@ -392,7 +358,9 @@ head(results_avgdotsize_c11$cluster)
 The k-means output when plotted
 <img src="https://github.com/LieberInstitute/dotdotdot/blob/master/images/Kmeans-BdnfEx4.jpg" title="k-means" width="300"/> 
 
+### ROI level quantitative analyses
 
+Phenotype data can be merged with the ROI-level `dotdotdot` output (`longdat.csv`) and differential expression analyses can be performed with linear mixed effects modeling, treating the image file as a random intercept. 
 
 
 
