@@ -31,7 +31,7 @@ end
 for i = 1:numel(O)
   v = char(O(i));
   v(~isstrprop(v,'alphanum')) = '_';
-  v = ['img.',v];
+  v = ['img.O',v];
   L = squeeze(image6d(:,:,:,i,:,:));
   S = size(L);
   
