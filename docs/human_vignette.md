@@ -283,10 +283,13 @@ The output files have the following columns:
 `man.csv` represents *image-level* summary statistics for each channel of input data (represented as `*`)
 
 - var1: image name,
-- PO_* - total C1 pixels in the image
-- DO_* - total C1 dots in the image
-- IO_* - Mean Intensity of C1 dots in the image
-- MI_* - Mean Intensity of the C1 channel in the image
+- PO_* - total gene pixels in the image
+- PM_* - total gene pixels in the image after Lipofuscin masking
+- DO_* - total gene dots in the image
+- DM_* - total gene dots in the image after Lipofuscin masking
+- IO_* - Mean Intensity of gene dots in the image
+- IM_* - Mean Intensity of gene dots in the image after Lipofuscin masking
+- MI_* - Mean Intensity of the gene channel in the image
 
 ####  longdat.csv
 
