@@ -273,7 +273,43 @@ file 1 completed
 file 2 completed
 file 3 completed
 ```
-These csv files [long_data](https://github.com/LieberInstitute/dotdotdot/blob/master/output/long_data.csv), [man](https://github.com/LieberInstitute/dotdotdot/blob/master/output/man.csv) are extracted into R objects like below, RVolume is volume of ROI, P520 is number of ROI pixels covered with gene in channel 520, MP520 is number of ROI pixels covered with gene in channel 520 after lipofuscin masking, MI_P520 is mean intensity of ROI pixels covered with gene, MI_MP520 is mean intensity of ROI pixels covered with gene after lipofuscin masking, PP520 is proportion of ROI covered with 520 pixels.
+
+## Description of output
+
+The output files have the following columns:
+
+#### `man.csv`
+
+`man.csv` represents *image-level* summary statistics for each channel of input data (represented as `*`)
+
+- var1: image name,
+- PO_* - total C1 pixels in the image
+- DO_* - total C1 dots in the image
+- IO_* - Mean Intensity of C1 dots in the image
+- MI_* - Mean Intensity of the C1 channel in the image
+
+####  longdat.csv
+
+`longdat.csv` represents *ROI-level* (or *nuclei-level*) summary statistics for each channel of input data (represented as `*`)
+
+- names: image name in that dataset
+- RVolume: ROI volume
+- P_* : total transcript pixels in that ROI
+- MP_* : total transcript pixels in that ROI after Lipofuscin masking
+- MI_P_* : Mean intensity of transcript pixels in that ROI
+- MI_MP_* : Mean intensity of transcript pixels in that ROI after Lipofuscin masking
+- D_* : total transcript dots in that ROI
+- MD_* : total transcript dots in that ROI after Lipofuscin masking
+- V_* : mean volume/size (in pixels) of transcript dots in that ROI
+- MV_* : mean volume/size (in pixels) of transcript dots in that ROI after Lipofuscin masking
+- MI_D_* = Mean intensity of transcript dots in that ROI 
+- MI_MD_* = Mean intensity of transcript dots in that ROI after Lipofuscin masking
+
+These two CSVs can be read into R (or python, or Matlab, or your favorite statistical sofware tool). 
+
+## Downstream analyses
+
+The above csv files [long_data](https://github.com/LieberInstitute/dotdotdot/blob/master/output/long_data.csv), [man](https://github.com/LieberInstitute/dotdotdot/blob/master/output/man.csv) are extracted into R objects like below. RVolume is volume of ROI, P520 is number of ROI pixels covered with gene in channel 520, MP520 is number of ROI pixels covered with gene in channel 520 after lipofuscin masking, MI_P520 is mean intensity of ROI pixels covered with gene, MI_MP520 is mean intensity of ROI pixels covered with gene after lipofuscin masking, PP520 is proportion of ROI covered with 520 pixels.
 
 ```R
 head(long_Dat)
