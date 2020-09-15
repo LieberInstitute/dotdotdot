@@ -53,6 +53,7 @@ fprintf('\n\n\n')
 
 disp('segmenting DAPI')
 
+O = fieldnames(img);
 ch = eval(['img.',char(O(d))]); 
 
 prm.method = 'adth';	% adaptive thresholding
