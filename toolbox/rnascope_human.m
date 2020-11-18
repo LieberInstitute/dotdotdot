@@ -6,6 +6,11 @@ function rnascope_human(filename, toolbox, DAPI, LIP, DROP)
 addpath(genpath(toolbox))
 
 tic
+
+if E == '.mat'
+load(filename)
+O = fieldnames(img);
+else
 warning('off','all');
 out = ReadImage6D(filename);
 warning('on','all');
@@ -22,7 +27,6 @@ if isempty(find(cell2mat(O), 1))
         O = out{2}.Channels;
 end
 
-	
 for i = 1:numel(O)
     %% 
     
@@ -52,6 +56,7 @@ for i = 1:numel(O)
 	  
 end
 
+end
 clearex X Y Z filename out toolbox img LIP
 	  
 disp('extracted')
