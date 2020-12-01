@@ -7,10 +7,6 @@ addpath(genpath(toolbox))
 
 tic
 
-if E == '.mat'
-load(filename)
-O = fieldnames(img);
-else
 warning('off','all');
 out = ReadImage6D(filename);
 warning('on','all');
@@ -56,7 +52,6 @@ for i = 1:numel(O)
 	  
 end
 
-end
 clearex X Y Z filename out toolbox img LIP
 	  
 disp('extracted')
