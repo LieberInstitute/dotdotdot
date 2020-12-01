@@ -3,14 +3,10 @@ function rnascope_mouse(filename,toolbox)
 % toolbox = '/dcl01/lieber/ajaffe/Maddy/RNAscope/henry_test/toolbox';
 addpath(genpath(toolbox))
 	
-[~,~,E] = fileparts(filename);
+
 tic
-if E == '.mat'
-load(filename)
-O = fieldnames(img);
-d = find(cellfun(@(x) contains(x,"DAPI"), O), 1);
-else
-warning('off','all')
+
+	warning('off','all')
 out = ReadImage6D(filename);
 	warning('on','all')
 X = out{2}.SizeX;
@@ -30,8 +26,6 @@ O = out{2}.Dyes;
 if isempty(d)
     d = find(cellfun(@(x) contains(x,"DAPI"), out{2}.Channels), 1);
     O = out{2}.Channels;
-end
-
 end
 
 for i = 1:numel(O)
