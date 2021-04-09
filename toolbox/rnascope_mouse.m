@@ -158,5 +158,11 @@ save([filename(1:end-4),'_segmentation.mat'],'Segmentations')
 save([filename(1:end-4),'_totaldots.mat'],'excel_totaldots') 
 save([filename(1:end-4),'_dots_of_ROI.mat'],'excel_dots_of_ROI') 
 
+IMG = [];
+for pp = 1:numel(O)
+IMG = [IMG,[max(mat2gray(img.(O{pp})),[],3),ones(Y,20); max(Segmentations.(O{pp}),[],3), ones(Y,20)]];
+end
+
+imwrite(IMG,[filename(1:end-4),'.png']);
 %clearex myfiles fn toolbox
 

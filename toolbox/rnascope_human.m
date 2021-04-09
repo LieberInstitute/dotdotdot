@@ -56,7 +56,7 @@ clearex X Y Z filename out toolbox img LIP
 	  
 disp('extracted')
 disp(fieldnames(img))
-OUTimg = [];
+%OUTimg = [];
 Lip = '';
 
 	toc 
@@ -115,25 +115,25 @@ v = ['excel_totaldots.',O{i}];
 v = ['Segmentations.',O{i}];
 	eval([v '= BWc;']);
 
-if contains(channe_i,'DAPI')
-figure('Visible','off')
-imshow(max(BWc,[],3))
-for k = 1:no_of_dots
-    text(statsc.Centroid(k,1),statsc.Centroid(k,2),num2str(k), 'Color', 'red', 'Fontsize',15); 
-end
+%if contains(channe_i,'DAPI')
+%figure('Visible','off')
+%imshow(max(BWc,[],3))
+%for k = 1:no_of_dots
+%    text(statsc.Centroid(k,1),statsc.Centroid(k,2),num2str(k), 'Color', 'red', 'Fontsize',15); 
+%end
 
-tim = getframe(gca); 
-BWc = im2double(tim.cdata);
-close all
-temp_img = max(rescale(img.(O{i})),[],3);
-OUTimg = [OUTimg ,[cat(3,temp_img,temp_img,temp_img),ones(X,5,3); ones(5,Y,3), ones(5,5,3); BWc, ones(X,5,3)]];
+%tim = getframe(gca); 
+%BWc = im2double(tim.cdata);
+%close all
+%temp_img = max(rescale(img.(O{i})),[],3);
+%OUTimg = [OUTimg ,[cat(3,temp_img,temp_img,temp_img),ones(X,5,3); ones(5,Y,3), ones(5,5,3); BWc, ones(X,5,3)]];
 
-else
+%else
 
-temp_img = max(rescale(img.(O{i})),[],3);
-OUTimg = [OUTimg ,[cat(3,temp_img,temp_img,temp_img),ones(X,5,3); ones(5,Y,3), ones(5,5,3); cat(3,max(BWc,[],3),max(BWc,[],3),max(BWc,[],3)), ones(X,5,3)]];	
+%temp_img = max(rescale(img.(O{i})),[],3);
+%OUTimg = [OUTimg ,[cat(3,temp_img,temp_img,temp_img),ones(X,5,3); ones(5,Y,3), ones(5,5,3); cat(3,max(BWc,[],3),max(BWc,[],3),max(BWc,[],3)), ones(X,5,3)]];	
 
-end
+%end
 clearex X Y Z filename out toolbox img O Segmentations excel_totaldots i Lip DAPI OUTimg LIP
 end
 
@@ -212,5 +212,11 @@ save([filename(1:end-4),'_totaldots.mat'],'excel_totaldots')
 save([filename(1:end-4),'_dots_of_ROI.mat'],'excel_dots_of_ROI') 
 end
 
-imwrite(OUTimg,[filename(1:end-4),'.png']);
+O = fieldnames(img);
+IMG = [];
+for pp = 1:numel(O)
+IMG = [IMG,[max(mat2gray(img.(O{pp})),[],3),ones(Y,20); max(Segmentations.(O{pp}),[],3), ones(Y,20)]];
+end
+
+imwrite(IMG,[filename(1:end-4),'.png']);
 end
